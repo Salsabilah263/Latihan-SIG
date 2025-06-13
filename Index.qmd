@@ -4,23 +4,28 @@ format: html
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+library(sf)
+library(leaflet)
 ```
 
-You can add options to executable code like this
+## GIS dengan RStudio dan Leaflet
 
-```{r}
-#| echo: false
-2 * 2
+ini adalah contoh peta interaktif dengan menggunakan leafleat
+
+```{r, echo=FALSE, warning=FALSE}
+jatim <- st_read("C:/Users/wulan/OneDrive/Dokumen/Jatim/JawaTimur.shp")
+
+# Set leaflet plot
+leaflet() %>%
+  
+  # Menambahkan peta dasar OpenStreet
+  addTiles() %>%
+  
+  # Mengatur wilayah yang ditampilkan
+  setView(lat = -8.163285093736228, lng = 113.7166939089337, zoom = 13) %>%
+  
+  # Menambahkan marker pada peta
+  addMarkers(lat = -8.163285093736228, lng = 113.7166939089337, popup = "Universitas Jember")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
